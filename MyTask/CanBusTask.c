@@ -71,6 +71,11 @@ void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* _hcan)
 	if(HAL_GetTick() - FlashTimer>500){
 		FlashTimer = HAL_GetTick();	
 	}
+		static Bool first = true;
+	if(can_count<=5&&first){
+		Chassis_And_Gimbal_Data_Init();}
+	if(can_count==5&&first){
+		first = false ;}
 
 	switch(_hcan->pRxMsg->StdId)
 		{

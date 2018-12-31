@@ -136,10 +136,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		Gimbal_RC_Mode();
-		SHORT();
-		PID_calculate_position_self();
-		PID_calculate_chassis_self();
+
   }
   /* USER CODE END 3 */
 }
@@ -203,6 +200,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
 	if (htim->Instance == TIM3){
+				Gimbal_RC_Mode();
+		SHORT();
+		PID_calculate_position_self();
+		PID_calculate_chassis_self();
 }
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {

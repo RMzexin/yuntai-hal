@@ -119,9 +119,11 @@ int main(void)
   MX_USART2_UART_Init();
   MX_USART3_UART_Init();
   MX_CAN1_Init();
+  MX_TIM5_Init();
   /* USER CODE BEGIN 2 */
 	RC_Ctl_t_Init();
 	HAL_TIM_Base_Start_IT(&htim3);
+	HAL_TIM_Base_Start_IT(&htim5);
 	my_can_filter_init_recv_all(&hcan1);     //配置CAN过滤器
   HAL_CAN_Receive_IT(&hcan1, CAN_FIFO0);   //启动CAN接收中断
   HAL_UART_Receive_IT_IDLE(&huart2,UART_Buffer,100); 
@@ -201,14 +203,15 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
 	if (htim->Instance == TIM3){
-		YUNTAI_SPEED();
 }
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */
-
+	if (htim->Instance == TIM5){
+		YUNTAI_SPEED();
+}
   /* USER CODE END Callback 1 */
 }
 

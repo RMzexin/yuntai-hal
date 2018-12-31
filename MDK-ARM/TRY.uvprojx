@@ -337,7 +337,7 @@
               <MiscControls>--c99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy; ../Drivers/CMSIS/Device/ST/STM32F4xx/Include; ../Drivers/CMSIS/Include; ..\MyTask; ..\algorithm</IncludePath>
+              <IncludePath>../Inc;  ../Drivers/STM32F4xx_HAL_Driver/Inc;  ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;  ..\MyTask;  ..\algorithm</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -439,6 +439,59 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Drivers/CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>system_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/system_stm32f4xx.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>MyTask</GroupName>
+          <Files>
+            <File>
+              <FileName>RemoteTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\RemoteTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>CanBusTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\CanBusTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>DataProcessingTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\DataProcessingTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>FireTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\FireTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>PIDcontrolTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\PIDcontrolTask.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>algorithm</GroupName>
+          <Files>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\algorithm\pid.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
+        </Group>
+        <Group>
           <GroupName>Drivers/STM32F4xx_HAL_Driver</GroupName>
           <Files>
             <File>
@@ -522,59 +575,6 @@
               <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>system_stm32f4xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/system_stm32f4xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>MyTask</GroupName>
-          <Files>
-            <File>
-              <FileName>RemoteTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MyTask\RemoteTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>CanBusTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MyTask\CanBusTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>DataProcessingTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MyTask\DataProcessingTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>FireTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MyTask\FireTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>PIDcontrolTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\MyTask\PIDcontrolTask.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>algorithm</GroupName>
-          <Files>
-            <File>
-              <FileName>pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\algorithm\pid.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

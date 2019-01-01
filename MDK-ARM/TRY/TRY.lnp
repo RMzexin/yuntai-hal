@@ -4,6 +4,7 @@
 ".\try\gpio.o"
 ".\try\can.o"
 ".\try\dma.o"
+".\try\freertos.o"
 ".\try\tim.o"
 ".\try\usart.o"
 ".\try\stm32f4xx_it.o"
@@ -32,6 +33,15 @@
 ".\try\stm32f4xx_hal_pwr_ex.o"
 ".\try\stm32f4xx_hal_cortex.o"
 ".\try\stm32f4xx_hal.o"
+".\try\croutine.o"
+".\try\event_groups.o"
+".\try\list.o"
+".\try\queue.o"
+".\try\tasks.o"
+".\try\timers.o"
+".\try\cmsis_os.o"
+".\try\heap_4.o"
+".\try\port.o"
 --library_type=microlib --strict --scatter ".\TRY\TRY.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

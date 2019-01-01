@@ -23,7 +23,6 @@
 #define CAN_BUS2_MOTOR6_FEEDBACK_MSG_ID           0x206
 #define CAN_BUS2_MOTOR7_FEEDBACK_MSG_ID           0x207
 
-#define CAN_SEND 1
 
 #define RATE_BUF_SIZE 6
 typedef struct{

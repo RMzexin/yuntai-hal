@@ -62,7 +62,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+  int8_t CAN_SEND=1;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -154,7 +154,7 @@ void StartDefaultTask(void const * argument)
 		PID_calculate_chassis_self();
 		if(CAN_SEND ==1 ){
 			Set_Gimbal_Motor_Output();
-			CAN_SEND ==0;
+			CAN_SEND =0;
 		}
     osDelay(1);
   }
@@ -165,7 +165,7 @@ void StartDefaultTask(void const * argument)
 void CanTimerSendCallback(void const * argument)
 {
   /* USER CODE BEGIN CanTimerSendCallback */
-  CAN_SEND == 1;
+  CAN_SEND = 1;
   /* USER CODE END CanTimerSendCallback */
 }
 

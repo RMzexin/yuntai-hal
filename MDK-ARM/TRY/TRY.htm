@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\TRY\TRY.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\TRY\TRY.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jan 01 21:21:56 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Jan 01 21:28:17 2019
 <BR><P>
 <H3>Maximum Stack Usage =        240 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -591,7 +591,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_UART_IDLE_IRQHandler
 </UL>
 
-<P><STRONG><a name="[62]"></a>CanTimerSendCallback</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, freertos.o(i.CanTimerSendCallback))
+<P><STRONG><a name="[62]"></a>CanTimerSendCallback</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, freertos.o(i.CanTimerSendCallback))
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
 </UL>
 <P><STRONG><a name="[94]"></a>Chassis_And_Gimbal_Data_Init</STRONG> (Thumb, 108 bytes, Stack size 0 bytes, pidcontroltask.o(i.Chassis_And_Gimbal_Data_Init))
@@ -1363,7 +1363,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartDefaultTask
 </UL>
 
-<P><STRONG><a name="[63]"></a>StartDefaultTask</STRONG> (Thumb, 40 bytes, Stack size 0 bytes, freertos.o(i.StartDefaultTask))
+<P><STRONG><a name="[63]"></a>StartDefaultTask</STRONG> (Thumb, 54 bytes, Stack size 0 bytes, freertos.o(i.StartDefaultTask))
 <BR><BR>[Stack]<UL><LI>Max Depth = 176<LI>Call Chain = StartDefaultTask &rArr; osTimerStart &rArr; xTimerGenericCommand &rArr; xQueueGenericSend &rArr; vTaskPlaceOnEventList &rArr; prvAddCurrentTaskToDelayedList &rArr; vListInsert
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osTimerStart

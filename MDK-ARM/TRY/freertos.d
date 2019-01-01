@@ -17,11 +17,11 @@
 .\try\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 .\try\freertos.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 .\try\freertos.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
-.\try\freertos.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h
-.\try\freertos.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_version.h
-.\try\freertos.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_compiler.h
-.\try\freertos.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_armcc.h
-.\try\freertos.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\mpu_armv7.h
+.\try\freertos.o: ../Drivers/CMSIS/Include/core_cm4.h
+.\try\freertos.o: ../Drivers/CMSIS/Include/core_cmInstr.h
+.\try\freertos.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+.\try\freertos.o: ../Drivers/CMSIS/Include/core_cmFunc.h
+.\try\freertos.o: ../Drivers/CMSIS/Include/core_cmSimd.h
 .\try\freertos.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 .\try\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 .\try\freertos.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
@@ -46,3 +46,10 @@
 .\try\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 .\try\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 .\try\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+.\try\freertos.o: ..\MyTask\CanBusTask.h
+.\try\freertos.o: ../Inc/can.h
+.\try\freertos.o: ..\MyTask\PIDcontrolTask.h
+.\try\freertos.o: ..\MyTask\DataProcessingTask.h
+.\try\freertos.o: ..\MyTask\CanBusTask.h
+.\try\freertos.o: ..\MyTask\FireTask.h
+.\try\freertos.o: ..\MyTask\RemoteTask.h

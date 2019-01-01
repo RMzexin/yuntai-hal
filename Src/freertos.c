@@ -56,7 +56,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-
+#include "CanBusTask.h"
+#include "FireTask.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -79,6 +80,7 @@
 
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
+osTimerId CanTimerSendHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -86,6 +88,7 @@ osThreadId defaultTaskHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
+void CanTimerSendCallback(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -96,7 +99,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-       
+	
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -106,6 +109,11 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
+
+  /* Create the timer(s) */
+  /* definition and creation of CanTimerSend */
+  osTimerDef(CanTimerSend, CanTimerSendCallback);
+  CanTimerSendHandle = osTimerCreate(osTimer(CanTimerSend), osTimerPeriodic, NULL);
 
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
@@ -137,11 +145,28 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
+	osTimerStart(CanTimerSendHandle, 1);
   for(;;)
   {
+		Gimbal_RC_Mode();
+		SHORT();
+		PID_calculate_position_self();
+		PID_calculate_chassis_self();
+		if(CAN_SEND ==1 ){
+			Set_Gimbal_Motor_Output();
+			CAN_SEND ==0;
+		}
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
+}
+
+/* CanTimerSendCallback function */
+void CanTimerSendCallback(void const * argument)
+{
+  /* USER CODE BEGIN CanTimerSendCallback */
+  CAN_SEND == 1;
+  /* USER CODE END CanTimerSendCallback */
 }
 
 /* Private application code --------------------------------------------------*/

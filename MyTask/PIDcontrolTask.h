@@ -121,11 +121,11 @@ else if(val>=max)\
 #define D_Value_Y_Voltage_MAX   500
 
 //‘∆Ã®¡È√Ù∂»
-#define STICK_TO_PITCH_ANGLE_INC_FACT       0.0028f   
-#define STICK_TO_YAW_ANGLE_INC_FACT         0.0028f
+#define STICK_TO_PITCH_ANGLE_INC_FACT       0.00028f   
+#define STICK_TO_YAW_ANGLE_INC_FACT         0.00028f
 
-#define STICK_TO_FORWARD_BACK_ANGLE_INC_FACT       3.68f   
-#define STICK_TO_LEFT_RIGHT_ANGLE_INC_FACT         3.68f
+#define STICK_TO_FORWARD_BACK_ANGLE_INC_FACT       0.368f   
+#define STICK_TO_LEFT_RIGHT_ANGLE_INC_FACT         0.368f
 
 
 

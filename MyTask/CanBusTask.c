@@ -4,9 +4,11 @@
 #include "PIDcontrolTask.h"
 #include "CanBusTask.h"
 #include "DataProcessingTask.h"
+#include "cmsis_os.h"
 #include <math.h>
 
 static uint32_t can_count = 0;
+static int8_t SEND=0;
 
 volatile Encoder CM1Encoder = {0,0,0,0,0,0,0,0,0};
 volatile Encoder CM2Encoder = {0,0,0,0,0,0,0,0,0};
@@ -15,6 +17,8 @@ volatile Encoder CM4Encoder = {0,0,0,0,0,0,0,0,0};
 volatile Encoder GMYawEncoder = {0,0,0,0,0,0,0,0,0};
 volatile Encoder GMPitchEncoder = {0,0,0,0,0,0,0,0,0};
 volatile Encoder GMPluckEncoder = {0,0,0,0,0,0,0,0,0};
+
+extern osTimerId CanTimerSendHandle;
 
 
 /*******************************************************************************************
@@ -71,11 +75,6 @@ void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* _hcan)
 	if(HAL_GetTick() - FlashTimer>500){
 		FlashTimer = HAL_GetTick();	
 	}
-		static Bool first = true;
-	if(can_count<=5&&first){
-		Chassis_And_Gimbal_Data_Init();}
-	if(can_count==5&&first){
-		first = false ;}
 
 	switch(_hcan->pRxMsg->StdId)
 		{
@@ -105,17 +104,17 @@ void HAL_CAN_RxCpltCallback(CAN_HandleTypeDef* _hcan)
 				EncoderProcess(&GMPitchEncoder ,_hcan);
 			  GMPitchEncoder.ecd_angle = Pitch_Angle_Precision_Filter(&GMPitchEncoder);
 				//码盘中间值设定也需要修改
-				if(can_count<=100)
-					{
-						if((GMPitchEncoder.ecd_bias - GMPitchEncoder.ecd_value) <-4000)
-							{
-								GMPitchEncoder.ecd_bias =0 + 8192;
-							}
-							else if((GMPitchEncoder.ecd_bias - GMPitchEncoder.ecd_value) > 4000)
-								{
-									GMPitchEncoder.ecd_bias =0 - 8192;
-								}
-					}
+//				if(can_count<=100)
+//					{
+//						if((GMPitchEncoder.ecd_bias - GMPitchEncoder.ecd_value) <-4000)
+//							{
+//								GMPitchEncoder.ecd_bias =0 + 8192;
+//							}
+//							else if((GMPitchEncoder.ecd_bias - GMPitchEncoder.ecd_value) > 4000)
+//								{
+//									GMPitchEncoder.ecd_bias =0 - 8192;
+//								}
+//					}
 			}break;	
 		case CAN_BUS2_MOTOR7_FEEDBACK_MSG_ID:
 			{
@@ -147,6 +146,7 @@ void GetEncoderBias(volatile Encoder *v, CAN_HandleTypeDef*_hcan)
 */
 void EncoderProcess(volatile Encoder *v,CAN_HandleTypeDef* _hcan)
 {
+	SEND ++;
 	int i=0;
 	int32_t temp_sum = 0;    
 	v->last_raw_value = v->raw_value;
@@ -191,7 +191,14 @@ void EncoderProcess(volatile Encoder *v,CAN_HandleTypeDef* _hcan)
 			{
 				v->rotor_speed =(((_hcan->pRxMsg->Data[2]<<8)|_hcan->pRxMsg->Data[3])/19);				
 			}
-	}		
+	}
+	
+static Bool first = true;
+	if(SEND<=5&&first){
+	}
+	if(SEND==4&&first){
+		Chassis_And_Gimbal_Data_Init();
+		first = false ;}	
 }
 
 float Yaw_Angle_Precision_Filter(volatile Encoder *Y)	//精准值   +-0.05°

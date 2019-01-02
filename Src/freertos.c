@@ -62,7 +62,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-  int8_t CAN_SEND=1;
+  int8_t CAN_SEND=0;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -145,16 +145,14 @@ void StartDefaultTask(void const * argument)
 
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
-	osTimerStart(CanTimerSendHandle, 1);
   for(;;)
   {
 		Gimbal_RC_Mode();
 		SHORT();
-		PID_calculate_position_self();
-		PID_calculate_chassis_self();
-		if(CAN_SEND ==1 ){
-			Set_Gimbal_Motor_Output();
-			CAN_SEND =0;
+		if(CAN_SEND==1){
+			PID_calculate_position_self();
+			PID_calculate_chassis_self();
+			CAN_SEND=0;
 		}
     osDelay(1);
   }
@@ -165,7 +163,7 @@ void StartDefaultTask(void const * argument)
 void CanTimerSendCallback(void const * argument)
 {
   /* USER CODE BEGIN CanTimerSendCallback */
-  CAN_SEND = 1;
+	CAN_SEND=1;
   /* USER CODE END CanTimerSendCallback */
 }
 

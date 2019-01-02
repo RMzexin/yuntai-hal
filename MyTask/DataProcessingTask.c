@@ -2,12 +2,14 @@
 #include "RemoteTask.h"	
 #include "PIDcontrolTask.h"
 #include "CanBusTask.h"
+#include <math.h>
 extern PID_Angle_Speed_t PID_Angle_Speed;
 
 void Yuntai_angle_speed(float *pitch_speed , float *yaw_speed, float *pluck_speed)
 {
 	
 	static unsigned short index = 0;
+	static unsigned short sign = 0;
 	static Bool first = true;
 	static float pitch_angle_buf[10] = {0};
 	static float yaw_angle_buf[10] = {0};
@@ -73,6 +75,7 @@ void Yuntai_angle_speed(float *pitch_speed , float *yaw_speed, float *pluck_spee
 		PID_Angle_Speed.Pitch_Speed_LAST=PID_Angle_Speed.Pitch_Speed_NOW;
 		PID_Angle_Speed.Yaw_Speed_LAST  =PID_Angle_Speed.Yaw_Speed_NOW;
 		PID_Angle_Speed.Pluck_Speed_LAST=PID_Angle_Speed.Pluck_Speed_NOW;
+		
 		for(int i=0;i<10-1;i++)
 		{
 			PID_Angle_Speed.Pitch_Speed_NOW+=pitch_angle_buf[i];
@@ -82,10 +85,13 @@ void Yuntai_angle_speed(float *pitch_speed , float *yaw_speed, float *pluck_spee
 		PID_Angle_Speed.Pitch_Speed_NOW=(PID_Angle_Speed.Pitch_Speed_NOW-biggest_P-smallest_P)/8;
 		PID_Angle_Speed.Yaw_Speed_NOW  =(PID_Angle_Speed.Yaw_Speed_NOW  -biggest_Y-smallest_Y)/8;
 		PID_Angle_Speed.Pluck_Speed_NOW=(PID_Angle_Speed.Pluck_Speed_NOW-biggest_L-smallest_L)/8;
+		if(fabs(PID_Angle_Speed.Pitch_Speed_NOW-PID_Angle_Speed.Pitch_Speed_LAST)>0
+			&&fabs(PID_Angle_Speed.Yaw_Speed_NOW-PID_Angle_Speed.Yaw_Speed_LAST)>0){sign++;}
 		
+		if(sign>2){
 		*pitch_speed=((PID_Angle_Speed.Pitch_Speed_NOW)-(PID_Angle_Speed.Pitch_Speed_LAST))/0.1f;
 		*yaw_speed  =((PID_Angle_Speed.Yaw_Speed_NOW)  -(PID_Angle_Speed.Yaw_Speed_LAST))/0.1f;
-		*pluck_speed=((PID_Angle_Speed.Pluck_Speed_NOW)-(PID_Angle_Speed.Pluck_Speed_LAST))/0.1f;
+		*pluck_speed=((PID_Angle_Speed.Pluck_Speed_NOW)-(PID_Angle_Speed.Pluck_Speed_LAST))/0.1f;}
 		
 		index=0,smallest_P=0,biggest_P=0,smallest_Y=0,biggest_Y=0,smallest_L=0,biggest_L=0;
 		

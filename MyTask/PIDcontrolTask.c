@@ -4,8 +4,10 @@
 #include "DataProcessingTask.h"
 #include "FireTask.h"
 #include "pid.h"
+#include "cmsis_os.h"
 #include <math.h>
 
+extern osTimerId CanTimerSendHandle;
 Gimbal_Ref_t gimbal_ref;				//云台数据
 
 PID_t Position_pitchPID;        //pitch位置环PID计算参数
@@ -31,9 +33,9 @@ pid_t CM2pid={100,3.3,5,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,16000,-16000};
 pid_t CM3pid={100,3.3,5,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,16000,-16000}; 
 pid_t CM4pid={100,3.3,5,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,16000,-16000}; 
 pid_t   YAWPpid={4.665,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000};
-pid_t PITCHPpid={3.15,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
-pid_t   YAWSpid={21.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
-pid_t PITCHSpid={15.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
+pid_t PITCHPpid={4.15,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
+pid_t   YAWSpid={68.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
+pid_t PITCHSpid={62.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
 pid_t PLUCKPpid={1.2,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
 pid_t PLUCKSpid={1.4,0.12,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,10000,-10000}; 
 
@@ -51,6 +53,7 @@ void Chassis_And_Gimbal_Data_Init(void)
 	PID_pitchPosition_value.actual = GMPitchEncoder.ecd_angle;
 	PID_pluckPosition_value.ideal  = gimbal_ref.pluck_angle_dynamic_ref;
 	PID_pluckPosition_value.actual = GMPluckEncoder.ecd_angle;
+	osTimerStart(CanTimerSendHandle, 1);
 }
 
 
@@ -58,7 +61,7 @@ void Chassis_And_Gimbal_Data_Init(void)
 void Set_Gimbal_Motor_Output(void)	 //can 输出
 {	
  	Set_Gimbal_Current(&hcan1, (int16_t)YAWSpid.pidout, (int16_t)PITCHSpid.pidout, (int16_t)PLUCKSpid.pidout);
-  //Set_Gimbal_Current(CAN1, (int16_t)0, (int16_t)0, (int16_t)0);	
+  //Set_Gimbal_Current(&hcan1, (int16_t)0, (int16_t)0, (int16_t)0);	
 	Set_CM_Speed(&hcan1,(int16_t)CM1pid.pidout,(int16_t)CM2pid.pidout,(int16_t)CM3pid.pidout,(int16_t)CM4pid.pidout);
 }
 
@@ -103,7 +106,8 @@ void PID_calculate_speed_self(void)//云台速度环PID算法
 	PID_pluckSpeed_value.ideal =PLUCKPpid.pidout;
 	pid_calculate(&PITCHSpid,-PID_pitchSpeed_value.actual,-PID_pitchSpeed_value.ideal);
 	pid_calculate(&YAWSpid,  -PID_yawSpeed_value.actual,  -PID_yawSpeed_value.ideal);
-  pid_calculate(&PLUCKSpid,PID_pluckSpeed_value.actual ,PID_pluckSpeed_value.ideal);		
+  pid_calculate(&PLUCKSpid,PID_pluckSpeed_value.actual ,PID_pluckSpeed_value.ideal);	
+  Set_Gimbal_Motor_Output();	
 }
 
 void PID_calculate_chassis_self(void)//底盘PID算法
@@ -112,5 +116,6 @@ void PID_calculate_chassis_self(void)//底盘PID算法
 	pid_calculate(&CM2pid,CM2Encoder.rotor_speed,-PID_CM2_value.ideal);	
 	pid_calculate(&CM3pid,CM3Encoder.rotor_speed,-PID_CM3_value.ideal);	
 	pid_calculate(&CM4pid,CM4Encoder.rotor_speed,-PID_CM4_value.ideal);	
+	Set_Gimbal_Motor_Output();
 }
 

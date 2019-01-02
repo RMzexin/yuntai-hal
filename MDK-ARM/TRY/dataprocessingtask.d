@@ -37,3 +37,4 @@
 .\try\dataprocessingtask.o: ..\MyTask\PIDcontrolTask.h
 .\try\dataprocessingtask.o: ..\MyTask\DataProcessingTask.h
 .\try\dataprocessingtask.o: ..\MyTask\RemoteTask.h
+.\try\dataprocessingtask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

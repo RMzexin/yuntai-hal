@@ -56,17 +56,20 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-
+#include "CanBusTask.h"
+#include "FireTask.h"
+#include "sprintf.h"
+#include "mpu9250.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+  int8_t CAN_SEND=0;
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+extern int SPRINTF;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -87,7 +90,7 @@ osTimerId CanTimerSendHandle;
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void const * argument);
-void Callback01(void const * argument);
+void CanTimerSendCallback(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -98,7 +101,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-       
+	
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -111,7 +114,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the timer(s) */
   /* definition and creation of CanTimerSend */
-  osTimerDef(CanTimerSend, Callback01);
+  osTimerDef(CanTimerSend, CanTimerSendCallback);
   CanTimerSendHandle = osTimerCreate(osTimer(CanTimerSend), osTimerPeriodic, NULL);
 
   /* USER CODE BEGIN RTOS_TIMERS */
@@ -146,17 +149,30 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+		Gimbal_RC_Mode();
+		SHORT();
+		if(CAN_SEND==1){
+			PID_calculate_position_self();
+			PID_calculate_chassis_self();
+			CAN_SEND=0;
+		}
+		if(SPRINTF == 1){
+	//		Print_PID_Data();
+			shanwai_sprintf();
+			mpu9250_assignment();
+			SPRINTF = 0;}
+			
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */
 }
 
-/* Callback01 function */
-void Callback01(void const * argument)
+/* CanTimerSendCallback function */
+void CanTimerSendCallback(void const * argument)
 {
-  /* USER CODE BEGIN Callback01 */
-  
-  /* USER CODE END Callback01 */
+  /* USER CODE BEGIN CanTimerSendCallback */
+	CAN_SEND=1;
+  /* USER CODE END CanTimerSendCallback */
 }
 
 /* Private application code --------------------------------------------------*/

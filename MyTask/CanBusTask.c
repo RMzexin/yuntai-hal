@@ -194,10 +194,11 @@ void EncoderProcess(volatile Encoder *v,CAN_HandleTypeDef* _hcan)
 	}
 	
 static Bool first = true;
-	if(SEND<=5&&first){
-	}
-	if(SEND==4&&first){
+	if(SEND<=6&&first){
 		Chassis_And_Gimbal_Data_Init();
+	}
+	if(SEND==7&&first){
+		osTimerStart(CanTimerSendHandle, 1);
 		first = false ;}	
 }
 

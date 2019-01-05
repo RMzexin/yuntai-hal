@@ -52,6 +52,8 @@
 
 /* USER CODE BEGIN 0 */
 #include "RemoteTask.h"
+#include "mpu9250.h"
+#include "stm32f4xx_it.h"
 uint8_t UART_Buffer[100];
 /* USER CODE END 0 */
 
@@ -393,6 +395,7 @@ void HAL_UART_IDLE_IRQHandler(UART_HandleTypeDef *huart)
 	
 }
 
+
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
      set to 'Yes') calls __io_putchar() */
@@ -409,7 +412,7 @@ PUTCHAR_PROTOTYPE
 {
   /* Place your implementation of fputc here */
   /* e.g. write a character to the EVAL_COM1 and Loop until the end of transmission */
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+  HAL_UART_Transmit(&huart3, (uint8_t *)&ch, 1, 0xFFFF);
  
   return ch;
 }

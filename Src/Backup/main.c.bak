@@ -51,6 +51,8 @@
 /* USER CODE BEGIN Includes */
 #include "CanBusTask.h"
 #include "FireTask.h"
+#include "sprintf.h"
+#include "mpu9250.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,7 +62,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+ int SPRINTF;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -128,7 +130,8 @@ int main(void)
 	HAL_TIM_Base_Start_IT(&htim5);
 	my_can_filter_init_recv_all(&hcan1);     //配置CAN过滤器
   HAL_CAN_Receive_IT(&hcan1, CAN_FIFO0);   //启动CAN接收中断
-		HAL_UART_Receive_IT_IDLE(&huart2,UART_Buffer,100); 
+	HAL_UART_Receive_IT_IDLE(&huart2,UART_Buffer,100); 
+	HAL_UART_Receive_IT(&huart1,&UART_RXBuffer,1);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -211,10 +214,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
   /* USER CODE BEGIN Callback 0 */
 	if (htim->Instance == TIM3){
-		Gimbal_RC_Mode();
-		SHORT();
-		PID_calculate_position_self();
-		PID_calculate_chassis_self();
+		SPRINTF = 1;
 }
   /* USER CODE END Callback 0 */
   if (htim->Instance == TIM6) {

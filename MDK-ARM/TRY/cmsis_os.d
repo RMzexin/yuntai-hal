@@ -16,4 +16,4 @@
 .\try\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 .\try\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 .\try\cmsis_os.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-.\try\cmsis_os.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+.\try\cmsis_os.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_armcc.h

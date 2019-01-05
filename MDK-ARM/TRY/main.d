@@ -6,12 +6,12 @@
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h
 .\try\main.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
 .\try\main.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h
-.\try\main.o: ../Drivers/CMSIS/Include/core_cm4.h
+.\try\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h
 .\try\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\try\main.o: ../Drivers/CMSIS/Include/core_cmInstr.h
-.\try\main.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
-.\try\main.o: ../Drivers/CMSIS/Include/core_cmFunc.h
-.\try\main.o: ../Drivers/CMSIS/Include/core_cmSimd.h
+.\try\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_version.h
+.\try\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_compiler.h
+.\try\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\cmsis_armcc.h
+.\try\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\mpu_armv7.h
 .\try\main.o: ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/system_stm32f4xx.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h
@@ -26,6 +26,8 @@
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ex.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_flash_ramfunc.h
+.\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c.h
+.\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_i2c_ex.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 .\try\main.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
@@ -48,6 +50,7 @@
 .\try\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 .\try\main.o: ../Inc/can.h
 .\try\main.o: ../Inc/dma.h
+.\try\main.o: ../Inc/i2c.h
 .\try\main.o: ../Inc/tim.h
 .\try\main.o: ../Inc/usart.h
 .\try\main.o: ../Inc/gpio.h

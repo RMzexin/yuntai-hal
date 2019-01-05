@@ -47,13 +47,12 @@ void Chassis_And_Gimbal_Data_Init(void)
   gimbal_ref.yaw_angle_dynamic_ref   = +GMYawEncoder.ecd_angle;
 	gimbal_ref.pluck_angle_dynamic_ref = +GMPluckEncoder.ecd_angle;
 	
-	PID_yawPosition_value.ideal    = gimbal_ref.yaw_angle_dynamic_ref;
-	PID_yawPosition_value.actual   = GMYawEncoder.ecd_angle;
 	PID_pitchPosition_value.ideal  = gimbal_ref.pitch_angle_dynamic_ref;
 	PID_pitchPosition_value.actual = GMPitchEncoder.ecd_angle;
+	PID_yawPosition_value.ideal    = gimbal_ref.yaw_angle_dynamic_ref;
+	PID_yawPosition_value.actual   = GMYawEncoder.ecd_angle;
 	PID_pluckPosition_value.ideal  = gimbal_ref.pluck_angle_dynamic_ref;
 	PID_pluckPosition_value.actual = GMPluckEncoder.ecd_angle;
-	osTimerStart(CanTimerSendHandle, 1);
 }
 
 
@@ -61,7 +60,7 @@ void Chassis_And_Gimbal_Data_Init(void)
 void Set_Gimbal_Motor_Output(void)	 //can Êä³ö
 {	
  	Set_Gimbal_Current(&hcan1, (int16_t)YAWSpid.pidout, (int16_t)PITCHSpid.pidout, (int16_t)PLUCKSpid.pidout);
-  //Set_Gimbal_Current(&hcan1, (int16_t)0, (int16_t)0, (int16_t)0);	
+ // Set_Gimbal_Current(&hcan1, (int16_t)0, (int16_t)0, (int16_t)0);	
 	Set_CM_Speed(&hcan1,(int16_t)CM1pid.pidout,(int16_t)CM2pid.pidout,(int16_t)CM3pid.pidout,(int16_t)CM4pid.pidout);
 }
 

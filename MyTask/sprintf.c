@@ -78,9 +78,9 @@ void shanwai_send_wave_form(void)
 void shanwai_sprintf()
 {
 		wave_form_data[0] =(float)PID_yawPosition_value.ideal;
-	  wave_form_data[1] =(float)PID_yawPosition_value.ideal;
-	  wave_form_data[2] =(float)GMYawEncoder.ecd_angle;
-	  wave_form_data[3] =(float)mpu9250.stcAngleX;
+	  wave_form_data[1] =(float)GMYawEncoder.ecd_angle;
+	  wave_form_data[2] =(float)PID_pitchPosition_value.ideal;
+	  wave_form_data[3] =(float)GMPitchEncoder.ecd_angle;
 		wave_form_data[4] =(float)mpu9250.stcAngleZ;
 	  wave_form_data[5] =(float)mpu9250.stcAngleY;
 		shanwai_send_wave_form();   //将数据传输到三外上位机，可以看到实时波形

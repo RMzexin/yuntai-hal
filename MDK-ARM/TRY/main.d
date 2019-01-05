@@ -57,3 +57,6 @@
 .\try\main.o: ..\MyTask\CanBusTask.h
 .\try\main.o: ..\MyTask\FireTask.h
 .\try\main.o: ..\MyTask\RemoteTask.h
+.\try\main.o: ..\MyTask\sprintf.h
+.\try\main.o: ..\MyTask\mpu9250.h
+.\try\main.o: ..\MyTask\JY901.h

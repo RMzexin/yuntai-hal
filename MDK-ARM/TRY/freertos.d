@@ -53,3 +53,6 @@
 .\try\freertos.o: ..\MyTask\CanBusTask.h
 .\try\freertos.o: ..\MyTask\FireTask.h
 .\try\freertos.o: ..\MyTask\RemoteTask.h
+.\try\freertos.o: ..\MyTask\sprintf.h
+.\try\freertos.o: ..\MyTask\mpu9250.h
+.\try\freertos.o: ..\MyTask\JY901.h

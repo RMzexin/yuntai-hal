@@ -481,6 +481,16 @@
               <FileType>1</FileType>
               <FilePath>..\MyTask\PIDcontrolTask.c</FilePath>
             </File>
+            <File>
+              <FileName>sprintf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\sprintf.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu9250.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\MyTask\mpu9250.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -47,4 +47,6 @@
 .\try\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 .\try\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 .\try\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
+.\try\stm32f4xx_it.o: ..\MyTask\mpu9250.h
+.\try\stm32f4xx_it.o: ..\MyTask\JY901.h
 .\try\stm32f4xx_it.o: ../Inc/usart.h

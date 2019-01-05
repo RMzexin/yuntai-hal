@@ -16,6 +16,8 @@
 ".\try\dataprocessingtask.o"
 ".\try\firetask.o"
 ".\try\pidcontroltask.o"
+".\try\sprintf.o"
+".\try\mpu9250.o"
 ".\try\pid.o"
 ".\try\stm32f4xx_hal_can.o"
 ".\try\stm32f4xx_hal_tim.o"

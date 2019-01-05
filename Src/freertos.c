@@ -58,6 +58,8 @@
 /* USER CODE BEGIN Includes */     
 #include "CanBusTask.h"
 #include "FireTask.h"
+#include "sprintf.h"
+#include "mpu9250.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -67,7 +69,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+extern int SPRINTF;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -154,6 +156,12 @@ void StartDefaultTask(void const * argument)
 			PID_calculate_chassis_self();
 			CAN_SEND=0;
 		}
+		if(SPRINTF == 1){
+	//		Print_PID_Data();
+			shanwai_sprintf();
+			mpu9250_assignment();
+			SPRINTF = 0;}
+			
     osDelay(1);
   }
   /* USER CODE END StartDefaultTask */

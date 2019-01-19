@@ -86,7 +86,8 @@ void Yuntai_angle_speed(float *pitch_speed , float *yaw_speed, float *pluck_spee
 		PID_Angle_Speed.Yaw_Speed_NOW  =(PID_Angle_Speed.Yaw_Speed_NOW  -biggest_Y-smallest_Y)/8;
 		PID_Angle_Speed.Pluck_Speed_NOW=(PID_Angle_Speed.Pluck_Speed_NOW-biggest_L-smallest_L)/8;
 		if(fabs(PID_Angle_Speed.Pitch_Speed_NOW-PID_Angle_Speed.Pitch_Speed_LAST)>0
-			&&fabs(PID_Angle_Speed.Yaw_Speed_NOW-PID_Angle_Speed.Yaw_Speed_LAST)>0){sign++;}
+			||fabs(PID_Angle_Speed.Yaw_Speed_NOW-PID_Angle_Speed.Yaw_Speed_LAST)>0
+      ||fabs(PID_Angle_Speed.Pluck_Speed_NOW-PID_Angle_Speed.Pluck_Speed_LAST)){sign++;}
 		
 		if(sign>2){
 		*pitch_speed=((PID_Angle_Speed.Pitch_Speed_NOW)-(PID_Angle_Speed.Pitch_Speed_LAST))/0.1f;

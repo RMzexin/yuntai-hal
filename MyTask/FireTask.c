@@ -13,12 +13,12 @@ motor_pwm_setvalue1(1000);
 //电调开启信号
 void  FireOpen()            
 {
-motor_pwm_setvalue1(1500);
+motor_pwm_setvalue1(1250);  
 }
 
 void  Firefast()            
 {
-motor_pwm_setvalue1(1800);
+motor_pwm_setvalue1(1310);
 }
 
 float  PLUCK()
@@ -27,7 +27,7 @@ float  PLUCK()
 	if(RC_Ctl.switch_left==3&&first)
 	{
 		first = false;
-		return 360.0*PLUCK_RATIO/9.0;
+		return 360.0*PLUCK_RATIO/7.0;
 	}
 	else if(RC_Ctl.switch_left==1&&first==false)
 	{

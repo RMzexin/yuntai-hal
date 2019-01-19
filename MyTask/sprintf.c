@@ -43,10 +43,10 @@ extern PID_Angle_Speed_t PID_Angle_Speed;
 void Print_PID_Data(void)
 {                                                                             
      printf("A%6.3f\r\nB%6.3f\r\nC%6.3f\r\nD%6.3f\r\n",
-		 (float)mpu9250.stcAngleX,
-		 (float)mpu9250.stcAngleY,
-		 (float)mpu9250.stcAngleZ,
-		 (float)GMPitchEncoder.ecd_angle);
+		 (float)GMPitchEncoder.ecd_angle,
+		 (float)PID_pitchPosition_value.ideal,
+		 (float)PID_pitchSpeed_value.actual,
+		 (float)PID_pitchSpeed_value.ideal);
 }
 
 //该.c文件主要是配合山外调试助手发送波形
@@ -77,10 +77,10 @@ void shanwai_send_wave_form(void)
 }	
 void shanwai_sprintf()
 {
-		wave_form_data[0] =(float)PID_yawPosition_value.ideal;
-	  wave_form_data[1] =(float)GMYawEncoder.ecd_angle;
-	  wave_form_data[2] =(float)PID_pitchPosition_value.ideal;
-	  wave_form_data[3] =(float)GMPitchEncoder.ecd_angle;
+		wave_form_data[0] =(float)GMPitchEncoder.ecd_angle;
+	  wave_form_data[1] =(float)PID_pitchPosition_value.ideal;
+	  wave_form_data[2] =(float)PID_pitchSpeed_value.actual;
+	  wave_form_data[3] =(float)PID_pitchSpeed_value.ideal;
 		wave_form_data[4] =(float)mpu9250.stcAngleZ;
 	  wave_form_data[5] =(float)mpu9250.stcAngleY;
 		shanwai_send_wave_form();   //将数据传输到三外上位机，可以看到实时波形

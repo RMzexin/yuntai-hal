@@ -151,15 +151,15 @@ void StartDefaultTask(void const * argument)
   {
 		Gimbal_RC_Mode();
 		SHORT();
+//		Print_PID_Data();
 		if(CAN_SEND==1){
 			PID_calculate_position_self();
 			PID_calculate_chassis_self();
 			CAN_SEND=0;
 		}
 		if(SPRINTF == 1){
-	//		Print_PID_Data();
 			shanwai_sprintf();
-			mpu9250_assignment();
+//			mpu9250_assignment();
 			SPRINTF = 0;}
 			
     osDelay(1);

@@ -43,6 +43,7 @@
 #include "cmsis_os.h"
 #include "can.h"
 #include "dma.h"
+#include "i2c.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
@@ -124,6 +125,7 @@ int main(void)
   MX_USART3_UART_Init();
   MX_CAN1_Init();
   MX_TIM5_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
 	RC_Ctl_t_Init();
 	HAL_TIM_Base_Start_IT(&htim3);

@@ -124,8 +124,8 @@ else if(val>=max)\
 #define STICK_TO_PITCH_ANGLE_INC_FACT       0.00028f   
 #define STICK_TO_YAW_ANGLE_INC_FACT         0.00028f
 
-#define STICK_TO_FORWARD_BACK_ANGLE_INC_FACT       2.368f   
-#define STICK_TO_LEFT_RIGHT_ANGLE_INC_FACT         2.368f
+#define STICK_TO_FORWARD_BACK_ANGLE_INC_FACT       3.968f   
+#define STICK_TO_LEFT_RIGHT_ANGLE_INC_FACT         3.968f
 
 
 

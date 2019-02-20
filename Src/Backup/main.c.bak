@@ -53,6 +53,7 @@
 #include "CanBusTask.h"
 #include "FireTask.h"
 #include "sprintf.h"
+#include "inv_mpu.h"
 #include "mpu9250.h"
 /* USER CODE END Includes */
 
@@ -96,7 +97,7 @@ void MX_FREERTOS_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	
+  unsigned char DMP_INT_FLAG=0;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -130,10 +131,12 @@ int main(void)
 	RC_Ctl_t_Init();
 	HAL_TIM_Base_Start_IT(&htim3);
 	HAL_TIM_Base_Start_IT(&htim5);
+	mpu_dmp_init();
 	my_can_filter_init_recv_all(&hcan1);     //配置CAN过滤器
   HAL_CAN_Receive_IT(&hcan1, CAN_FIFO0);   //启动CAN接收中断
 	HAL_UART_Receive_IT_IDLE(&huart2,UART_Buffer,100); 
-	HAL_UART_Receive_IT(&huart1,&UART_RXBuffer,1);
+//	HAL_GPIO_WritePin(LED0_GPIO_Port,LED0_Pin, GPIO_PIN_SET);
+//	HAL_GPIO_WritePin(LED1_GPIO_Port,LED1_Pin, GPIO_PIN_SET);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

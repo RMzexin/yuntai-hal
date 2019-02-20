@@ -61,5 +61,6 @@
 .\try\main.o: ..\MyTask\FireTask.h
 .\try\main.o: ..\MyTask\RemoteTask.h
 .\try\main.o: ..\MyTask\sprintf.h
-.\try\main.o: ..\MyTask\mpu9250.h
-.\try\main.o: ..\MyTask\JY901.h
+.\try\main.o: ..\DMP\inv_mpu.h
+.\try\main.o: ..\DMP\mpu9250.h
+.\try\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h

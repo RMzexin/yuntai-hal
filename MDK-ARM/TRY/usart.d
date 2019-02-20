@@ -35,6 +35,6 @@
 .\try\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 .\try\usart.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 .\try\usart.o: ..\MyTask\RemoteTask.h
-.\try\usart.o: ..\MyTask\mpu9250.h
-.\try\usart.o: ..\MyTask\JY901.h
+.\try\usart.o: ..\DMP\mpu9250.h
+.\try\usart.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h
 .\try\usart.o: ../Inc/stm32f4xx_it.h

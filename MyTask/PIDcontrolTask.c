@@ -34,8 +34,8 @@ pid_t CM3pid={110,3.3,5,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,16000,-16000};
 pid_t CM4pid={110,3.3,5,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,16000,-16000}; 
 pid_t   YAWPpid={3.865,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000};
 pid_t PITCHPpid={3.85,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
-pid_t   YAWSpid={54.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
-pid_t PITCHSpid={56.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
+pid_t   YAWSpid={34.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
+pid_t PITCHSpid={36.75,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
 pid_t PLUCKPpid={1.2,0,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,5000,-5000}; 
 pid_t PLUCKSpid={1.4,0.12,0,0,0,0,0,0,0,0,0,0,0,1000,-1000,0,0,0,0,10000,-10000}; 
 
@@ -60,8 +60,9 @@ void Chassis_And_Gimbal_Data_Init(void)
 void Set_Gimbal_Motor_Output(void)	 //can Êä³ö
 {	
  	Set_Gimbal_Current(&hcan1, (int16_t)YAWSpid.pidout, (int16_t)PITCHSpid.pidout, (int16_t)PLUCKSpid.pidout);
- // Set_Gimbal_Current(&hcan1, (int16_t)0, (int16_t)0, (int16_t)0);	
 	Set_CM_Speed(&hcan1,(int16_t)CM1pid.pidout,(int16_t)CM2pid.pidout,(int16_t)CM3pid.pidout,(int16_t)CM4pid.pidout);
+//    Set_Gimbal_Current(&hcan1, (int16_t)0, (int16_t)0, (int16_t)0);	
+//	  Set_CM_Speed(&hcan1,(int16_t)0,(int16_t)0,(int16_t)0,(int16_t)0);
 }
 
 

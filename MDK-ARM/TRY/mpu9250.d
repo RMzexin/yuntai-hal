@@ -1,6 +1,5 @@
-.\try\mpu9250.o: ..\MyTask\mpu9250.c
-.\try\mpu9250.o: ..\MyTask\mpu9250.h
-.\try\mpu9250.o: ../Inc/main.h
+.\try\mpu9250.o: ..\DMP\mpu9250.c
+.\try\mpu9250.o: ..\DMP\mpu9250.h
 .\try\mpu9250.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h
 .\try\mpu9250.o: ../Inc/stm32f4xx_hal_conf.h
 .\try\mpu9250.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h
@@ -34,6 +33,6 @@
 .\try\mpu9250.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 .\try\mpu9250.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 .\try\mpu9250.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-.\try\mpu9250.o: ..\MyTask\JY901.h
-.\try\mpu9250.o: ../Inc/usart.h
-.\try\mpu9250.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\try\mpu9250.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.3.0\CMSIS\Include\core_cm4.h
+.\try\mpu9250.o: ../Inc/i2c.h
+.\try\mpu9250.o: ../Inc/main.h

@@ -5,14 +5,15 @@
 #include "RemoteTask.h"
 #include "CanBusTask.h"
 #include "PIDcontrolTask.h"
+#include "imu_task.h"
 
 
 unsigned char DataScope_OutPut_Buffer[42] = {0};
 
 extern RC_Type RC_Ctl;
+extern IMU_t IMU;
 
 extern Gimbal_Ref_t gimbal_ref;				//云台数据
-extern mpu9250_t mpu9250;
 
 extern pid_t CM1pid;
 extern pid_t CM2pid;
@@ -79,10 +80,10 @@ void shanwai_sprintf()
 {
 		wave_form_data[0] =(float)GMPitchEncoder.ecd_angle;
 	  wave_form_data[1] =(float)PID_pitchPosition_value.ideal;
-	  wave_form_data[2] =(float)PID_pitchSpeed_value.actual;
-	  wave_form_data[3] =(float)PID_pitchSpeed_value.ideal;
-		wave_form_data[4] =(float)mpu9250.stcAngleZ;
-	  wave_form_data[5] =(float)mpu9250.stcAngleY;
+	  wave_form_data[2] =(float)IMU.pitch;
+	  wave_form_data[3] =(float)IMU.roll ;
+		wave_form_data[4] =(float)IMU.yaw ;
+	  wave_form_data[5] =(float)IMU.pitch;
 		shanwai_send_wave_form();   //将数据传输到三外上位机，可以看到实时波形
 }
 
